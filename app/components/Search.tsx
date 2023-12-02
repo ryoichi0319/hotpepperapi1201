@@ -1,9 +1,13 @@
 "use client"
 import { useRef, useTransition, useCallback, useState, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { PrefCategory } from "@/data/prefecture";
+import { GenreCategory } from "@/data/genre"
 
-const Search = ({ keyword }: any) => {
+const Search = ({ keyword, large_service_area, genre }: any) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const large_service_areaRef = useRef<HTMLSelectElement | null>(null); 
+  const genreRef = useRef<HTMLSelectElement | null>(null)
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -17,6 +21,20 @@ const Search = ({ keyword }: any) => {
       inputRef.current.value = keyword;
     }
   }, [keyword]);
+  
+  useEffect(() => {
+    // keyword が変更されたら、入力フィールドの値を更新
+    if (large_service_areaRef.current && large_service_area) {
+      large_service_areaRef.current.value = large_service_area;
+    }
+  }, [large_service_area]);
+
+  useEffect(() => {
+    if(genreRef.current && genre){
+      genreRef.current.value = genre
+    }
+  },[genre])
+  
 
   console.log(pathname, "pathname");
 
@@ -44,6 +62,8 @@ const Search = ({ keyword }: any) => {
         router.push(
           `/${pathname}?${createQueryString({
             keyword: inputRef.current?.value,
+            large_service_area: large_service_areaRef.current?.value,
+            genre: genreRef.current?.value
           })}`
 
 
@@ -53,16 +73,28 @@ const Search = ({ keyword }: any) => {
 
       });
       inputRef.current.value = "";
-      
+
     
     }
   };
 
   return (
-    <div>
+    <div className=" ">
       <form onSubmit={onSubmit}>
         <input type="text" ref={inputRef} />
-        <button type="submit">検索</button>
+        <select ref={large_service_areaRef}>
+            {PrefCategory.map((category, index) => (
+            <option key={index} value={category.large_service_area}>
+            {category.category_name}
+        </option>
+      ))}
+    </select>
+    <select ref={genreRef} >
+      {GenreCategory.map((genre,index) =>(
+        <option  key={index} value={genre.genre}>{genre.genre_name}</option>
+      ))}
+      </select>     
+     <button type="submit">検索</button>
       </form>
     </div>
   );

@@ -8,31 +8,35 @@ interface HomeProps {
   };
 }
 
-async function fetchAllData({ keyword }: { keyword: string | undefined}) {
-  const res = await fetch(`http://localhost:3000/api/search?keyword=${keyword}`, {
+async function fetchAllData({ keyword, large_service_area, genre }
+  : { keyword: string | undefined
+  , large_service_area: string | undefined
+     genre: string | undefined}) {
+  const res = await fetch(`http://localhost:3000/api/search?keyword=${keyword}&large_service_area=${large_service_area}&genre=${genre}`, {
     cache: "no-store", //SSR
   });
   console.log(keyword)
+  console.log(large_service_area)
   const data = await res.json();
+  console.log(data.results, "?????");
   return data;
 }
 
 
 export default async function Home({searchParams}: HomeProps) {
-  const { keyword } = searchParams;
-  const shops = await fetchAllData({ keyword });
-  console.log(shops,"shops")
- 
+  const { keyword, large_service_area, genre} = searchParams;
+  const shops = await fetchAllData({ keyword ,large_service_area, genre});
   console.log(searchParams,"search")
+
   
   return (
     <div className="">
-      <Search keyword={keyword}  />
+      <Search keyword={keyword}  large_service_area={large_service_area} genre={genre}/>
       <div className=" grid grid-cols-3">
         {shops.results.shop.map((shop: any) => (
           <ShopItem key={shop.id}  shop={shop}/>
         ))}
-      </div>
+      </div> 
       </div>
   );
 }
