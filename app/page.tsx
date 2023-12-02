@@ -16,9 +16,7 @@ async function fetchAllData({ keyword, large_service_area, genre }
     cache: "no-store", //SSR
   });
   console.log(keyword)
-  console.log(large_service_area)
   const data = await res.json();
-  console.log(data.results, "?????");
   return data;
 }
 
@@ -28,16 +26,21 @@ export default async function Home({searchParams}: HomeProps) {
   const shops = await fetchAllData({ keyword ,large_service_area, genre});
   console.log(searchParams,"search")
 
+
   
   return (
-    <div className="">
-      <Search keyword={keyword}  large_service_area={large_service_area} genre={genre}/>
-      <div className=" grid grid-cols-3">
-        {shops.results.shop.map((shop: any) => (
-          <ShopItem key={shop.id}  shop={shop}/>
-        ))}
-      </div> 
-      </div>
+    <div className=" ">
+     <Search keyword={keyword} large_service_area={large_service_area} genre={genre} />
+      {shops.results.shop.length === 0 ? (
+        <p>データがありません</p>
+      ) : (
+        <div className="grid grid-cols-3 mt-12">
+          {shops.results.shop.map((shop: any) => (
+            <ShopItem key={shop.id} shop={shop} />
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -56,7 +59,7 @@ export default async function Home({searchParams}: HomeProps) {
 
 //   const firstData = await firstRes.json();
 //   const totalCount = firstData.results.results_available; // レスポンスによっては異なるプロパティを確認
-
+//   console.log(totalCount,"tc")
 //   return totalCount;
 // }
 

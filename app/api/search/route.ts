@@ -14,12 +14,14 @@ export  async function GET(req: NextRequest, res: NextResponse){
     console.log(genre,"genre1")
 
 const response = await fetch(
-    `${baseUrl}?key=${apiKey}&large_service_area=${large_service_area}&genre=${genre}&format=${format}&keyword=${keyword}&count=100`
+    `${baseUrl}?key=${apiKey}&large_service_area=${large_service_area}&genre=${genre}&format=${format}&keyword=${keyword}&count=15`
 );
 
 const data = await response.json();
 const { results } = data;
+const total = results.results_available
+console.log(results.results_available,"results_available")
 
-return NextResponse.json({ results, keyword ,large_service_area,genre});
+return NextResponse.json({ results, keyword ,large_service_area,genre,total});
 }
 
