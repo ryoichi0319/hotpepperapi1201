@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PrefCategory } from "@/data/prefecture";
 import { GenreCategory } from "@/data/genre";
 
-const Search = ({ keyword, large_service_area, genre }: any) => {
+const Search = ({ keyword, large_service_area, genre,offset }: any) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const large_service_areaRef = useRef<HTMLSelectElement | null>(null);
   const genreRef = useRef<HTMLSelectElement | null>(null);
@@ -15,27 +15,26 @@ const Search = ({ keyword, large_service_area, genre }: any) => {
 
   // Page transition management hook
   const [isPending, startTransition] = useTransition();
-
   // Handle keyword change
   useEffect(() => {
     if (inputRef.current && keyword) {
       inputRef.current.value = keyword;
     }
-  }, [keyword,large_service_area,genre]);
+  }, [keyword]);
 
   // Handle large service area change
   useEffect(() => {
     if (large_service_areaRef.current && large_service_area) {
       large_service_areaRef.current.value = large_service_area;
     }
-  }, [large_service_area,keyword,genre]);
+  }, [large_service_area]);
 
   // Handle genre change
   useEffect(() => {
     if (genreRef.current && genre) {
       genreRef.current.value = genre;
     }
-  }, [genre,keyword,large_service_area]);
+  }, [genre]);
 
   // Create query string
   const createQueryString = useCallback(
@@ -64,6 +63,7 @@ const Search = ({ keyword, large_service_area, genre }: any) => {
             keyword: inputRef.current?.value,
             large_service_area: large_service_areaRef.current?.value,
             genre: genreRef.current?.value,
+            page: "1"
           })}`
         );
       });
@@ -73,8 +73,8 @@ const Search = ({ keyword, large_service_area, genre }: any) => {
 
   return (
     <div className="p-4 bg-gray-800 lg:fixed top-0 left-0 w-full z-10">
-      <form onSubmit={onSubmit} className="flex flex-col md:flex-row items-center justify-end gap-4 ">
-        <div className="flex flex-col md:flex-row items-center gap-4">
+      <form onSubmit={onSubmit} className="flex flex-col lg:flex-row items-center justify-end gap-4 ">
+        <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0 items-center gap-4">
           <label className="text-white">キーワード</label>
           <input
             type="text"
@@ -83,7 +83,7 @@ const Search = ({ keyword, large_service_area, genre }: any) => {
             placeholder="キーワード検索"
           />
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-4">
+        <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0 items-center gap-4">
           <label className="text-white">大分類</label>
           <select className="p-2 border rounded" ref={large_service_areaRef}>
             {PrefCategory.map((category, index) => (
@@ -93,7 +93,7 @@ const Search = ({ keyword, large_service_area, genre }: any) => {
             ))}
           </select>
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-4">
+        <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0 items-center gap-4 ">
           <label className="text-white">ジャンル</label>
           <select className="p-2 border rounded" ref={genreRef}>
             {GenreCategory.map((genre, index) => (

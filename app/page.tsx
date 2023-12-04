@@ -3,6 +3,7 @@ import ShopItem from './components/ShopItem';
 import Search from './components/Search';
 import PaginationButton from './components/pager/Pagination';
 import {postPerPage} from "@/data/perPage"
+import Image from 'next/image';
 interface HomeProps {
   searchParams: {
     [key: string]: string | undefined;
@@ -16,7 +17,8 @@ async function fetchAllData({ keyword, large_service_area, genre,offset  }
      limit: number
      offset: number
     }) {
-  const res = await fetch(`http://localhost:3000/api/search?keyword=${keyword}&large_service_area=${large_service_area}&genre=${genre}&start=${offset}`, {
+  const res = await fetch(`http://localhost:3000/api/search?keyword=${keyword}
+  &large_service_area=${large_service_area}&genre=${genre}&start=${offset}`, {
     cache: "no-store", //SSR
   });
   console.log(keyword,"keyword")
@@ -54,11 +56,20 @@ export default async function Home({ searchParams }: HomeProps) {
   
   return (
     <div className=" ">
-     <Search keyword={keyword} large_service_area={large_service_area} genre={genre} />
+           
+
+     <Search keyword={keyword} large_service_area={large_service_area} genre={genre} offset={offset}/>
+     <div className=' flex sm:mt-24 sm:-mb-14 ml-10 space-x-5 mt-5'>
+              <p className='  '>検索結果</p>
+              <p className=' text-red-600 font-bold'>{total}</p>
+              <p>件</p>
+              
+              <p>{page} / {pageCount}</p>
+              </div>
       {total === 0 ? (
         <p>データがありません</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  sm:gap-3 lg:mt-12   ">
+        <div className="grid grid-cols-1 sm:gap-3 md:grid-cols-2 lg:grid-cols-3  lg:mt-12   ">
           {shops.results.shop.map((shop: any) => (
             <ShopItem key={shop.id} shop={shop} />
           ))}
@@ -67,6 +78,21 @@ export default async function Home({ searchParams }: HomeProps) {
        {shops.length !== 0 && (
         <PaginationButton pageCount={pageCount} displayPerPage={postPerPage} />
       )}
+      <div>
+      <footer className=' justify-end flex mr-7'>
+            <a  
+            href="http://webservice.recruit.co.jp/">
+              <Image
+              
+                src="http://webservice.recruit.co.jp/banner/hotpepper-s.gif"
+                alt="ホットペッパーグルメ Webサービス"
+                width="135"
+                height="17"
+                title="ホットペッパーグルメ Webサービス"
+              />
+            </a>
+          </footer>
+      </div>
     </div>
   );
 }
