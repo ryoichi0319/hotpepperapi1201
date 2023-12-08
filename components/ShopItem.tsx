@@ -1,13 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import ShopLikeDetail from "./ShopLikeDetail";
+
 
 interface ShopItemProps {
-  shop: any;
+  shop: any
+  userId: string | undefined;
 }
 
-const ShopItem = ({  shop }: ShopItemProps) => {
+
+const ShopItem = ({  shop, userId }: ShopItemProps) => {
+
   return (
     <div className=" shadow-md rounded-md  mx-2 ">
+
       <ul className="list-none  mx-1">
         <li
           key={shop.id}
@@ -15,6 +21,7 @@ const ShopItem = ({  shop }: ShopItemProps) => {
         >
           <div>
             <Link href={shop.urls.pc}>
+              
               <Image
                 className="aspect-[16/9] rounded-md  transition-all hover:scale-105 object-cover "
                 src={shop.photo.pc.m}
@@ -37,7 +44,10 @@ const ShopItem = ({  shop }: ShopItemProps) => {
           </div>
         </li>
       </ul>
+      <ShopLikeDetail  shop={shop} userId={userId}  />
+
     </div>
+    
   );
 };
 

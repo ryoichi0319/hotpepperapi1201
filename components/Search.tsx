@@ -72,9 +72,9 @@ const Search = ({ keyword, large_service_area, genre,offset }: any) => {
   };
 
   return (
-    <div className="p-4 bg-gray-800 lg:fixed top-0 left-0 w-full z-10">
-      <form onSubmit={onSubmit} className="flex flex-col lg:flex-row items-center justify-end gap-4 ">
-        <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0 items-center gap-4">
+    <div className=" bg-gray-800 pr-5   w-full z-10">
+      <form onSubmit={onSubmit} className="flex flex-col lg:flex-row pb-5 items-center justify-end gap-4 ">
+        <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0  items-center gap-4">
           <label className="text-white">キーワード</label>
           <input
             type="text"
@@ -83,7 +83,7 @@ const Search = ({ keyword, large_service_area, genre,offset }: any) => {
             placeholder="キーワード検索"
           />
         </div>
-        <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0 items-center gap-4">
+        <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0  items-center gap-4">
           <label className="text-white">大分類</label>
           <select className="p-2 border rounded" ref={large_service_areaRef}>
             {PrefCategory.map((category, index) => (
