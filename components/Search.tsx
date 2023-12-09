@@ -88,7 +88,7 @@ const Search = ({ keyword, large_service_area, genre,offset }: any) => {
           />
         </div>
         <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0  items-center gap-4">
-          <label className="text-white">大分類</label>
+          <label className="text-white">地域</label>
           <select className="p-2 border rounded" ref={large_service_areaRef}>
             {PrefCategory.map((category, index) => (
               <option key={index} value={category.large_service_area}>
