@@ -65,9 +65,13 @@ const Search = ({ keyword, large_service_area, genre,offset }: any) => {
             genre: genreRef.current?.value,
             page: "1"
           })}`
+
         );
+        router.refresh()
+
+
       });
-      inputRef.current.value = "";
+
     }
   };
 

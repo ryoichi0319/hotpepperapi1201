@@ -1,6 +1,6 @@
 "use client"
 import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { trpc } from "@/trpc/react"
 
@@ -19,13 +19,7 @@ import { cn } from "@/lib/utils"
     const router = useRouter()
     const [hasPostLiked, setHasPostLiked] = useState<boolean>(shop.hasPostLiked)
     const [likePostCount, setLikePostCount] = useState<number>(filterLike.length)
-
-    console.log(shop.hasPostLiked,"shophaspostliked")
-    console.log(hasPostLiked,"haspostlied")
-
-
     
-
       //いいね追加
       const { mutate: createPostLike, isLoading: createPostLikeLoading} =
       trpc.shop.createPostLike.useMutation({
@@ -86,12 +80,16 @@ import { cn } from "@/lib/utils"
               
           })
        }
+       const filterName = shop.like.filter((like:any) =>like.postId === shop.id && like.userId === userId)
+      console.log(filterName,"filterName")
+
+      
 
    
        return(
         <div className=" flex items-center">
 
-            {hasPostLiked ? (
+            {shop.hasPostLiked ? (
                 
                 <button
                    className="hover:bg-gray-100 p-2 rounded-full"
@@ -112,7 +110,10 @@ import { cn } from "@/lib/utils"
                     
                 </button>
             )}
-            {likePostCount > 0 && <div className=" pr-1">{likePostCount}</div>}
+{ filterLike.length > 0 && <div className=" pr-1">{filterLike.length}</div>}
+
+
+
         </div>
      )
 } 

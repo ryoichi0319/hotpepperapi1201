@@ -29,14 +29,14 @@ export const likeRouter = router({
           });
   
           const postsWithLikesStatus = likes.map((like) => {
-            // const userLike = userId
-            //   ? likes.find((like) => like.userId === userId)
-            //   : null;
+            const userLike = userId
+              ? likes.find((like) => like.userId === userId)
+              : null;
   
             return {
               ...like,
-            //   hasPostLiked: !!userLike,
-            //   postLikeId: userLike ? userLike.id : null,
+              hasPostLiked: !!userLike,
+              postLikeId: userLike ? userLike.id : null,
             };
           });
   
