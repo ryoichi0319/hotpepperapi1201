@@ -1,10 +1,10 @@
 
 
 
+import { getAuthSession } from "@/lib/nextauth";
 import { NextRequest,NextResponse } from "next/server";
 export async function GET(req: NextRequest, res: NextResponse, ) {
-
-  
+    
     const apiKey = process.env.API_KEY;
     const baseUrl = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/";
     // const serviceAriaOsaka = "SA23";

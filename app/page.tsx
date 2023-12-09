@@ -6,6 +6,7 @@ import {postPerPage} from "@/data/perPage"
 import Image from 'next/image';
 import { getAuthSession } from '@/lib/nextauth';
 import { trpc } from '@/trpc/client';
+
 interface HomeProps {
   searchParams: {
     [key: string]: string | undefined;
@@ -47,6 +48,7 @@ export default async function Home({ searchParams }: HomeProps) {
   // start プロパティの型を number | undefined に設定
 
   console.log(searchParams, "search");
+
   const shops = await fetchAllData({
     keyword,
     large_service_area,
@@ -58,7 +60,7 @@ export default async function Home({ searchParams }: HomeProps) {
   const {like,likes } = await trpc.like.getLikes({
     userId: user?.id,
   })
-  const newShops = shops.results.shop.map((shop:any) =>{
+  const  newShops =  await shops.results.shop.map((shop:any) =>{
     const userLike = userId
     ? like.find((like) => like.userId === userId && shop.id === like.postId )
     : null
@@ -68,8 +70,9 @@ export default async function Home({ searchParams }: HomeProps) {
       hasPostLiked: !!userLike,
       postLikeId: userLike ? userLike.id : null,
       like
-      
+       
     }
+
   })
 
 
