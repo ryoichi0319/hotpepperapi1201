@@ -21,15 +21,16 @@ const ShopItem = ({  shop, userId }: ShopItemProps) => {
         >
           <div>
             <Link href={shop.urls.pc}>
-              
+              <div className="aspect-[16/9] relative overflow-hidden rounded-md">
               <Image
-                className="aspect-[16/9] rounded-md  transition-all hover:scale-105 object-cover "
+                className="   transition-all hover:scale-105 object-cover "
                 src={shop.photo.pc.m}
                 alt={shop.name}
                 width={250}
                 height={250}
                 priority
               />
+              </div>
             </Link>
             </div>
 

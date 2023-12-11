@@ -83,7 +83,7 @@ const Signup = () => {
         signUp(data)
     }
     return(
-        <div className=" max-w-[400px] m-auto">
+        <div className=" max-w-[400px] m-auto mt-8">
             <div className=" text-2xl font-bold text-center mb-10">新規登録</div>
 
             <Button variant="outline" className=" w-full" onClick={handleGoogleSignup}>

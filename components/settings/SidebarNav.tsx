@@ -22,7 +22,7 @@ const SidebarNav = () => {
   const pathname = usePathname()
 
   return (
-    <nav className={cn("flex space-x-2 md:flex-col  md:space-x-0 md:space-y-1")}>
+    <nav className={cn("flex space-x-2 md:flex-col  md:space-x-0 md:space-y-1 mt-10")}>
       {items.map((item) => (
         <Link
           key={item.href}

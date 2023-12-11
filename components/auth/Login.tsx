@@ -87,7 +87,7 @@ const Login = () =>{
         }
     }
     return(
-        <div className=" max-w-[400px] m-auto">
+        <div className=" max-w-[400px] m-auto mt-10">
             <div className=" text-2xl font-bold text-center mb-10">ログイン</div>
             <Button variant="outline" className=" w-full" onClick={handleGoogleLogin}>
                 <FcGoogle  className=" mr-2 h-4 w-4"/>
