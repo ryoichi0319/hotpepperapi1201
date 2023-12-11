@@ -6,8 +6,6 @@ import {postPerPage} from "@/data/perPage"
 import Image from 'next/image';
 import { getAuthSession } from '@/lib/nextauth';
 import { trpc } from '@/trpc/client';
-import Link from 'next/link';
-import FavoriteButton from './favorite/page';
 
 interface HomeProps {
   searchParams: {
@@ -85,10 +83,6 @@ export default async function Home({ searchParams }: HomeProps) {
 
 
     
-  
-  
-console.log(newShops,"newshops")
-
   const total = shops.total
   const pageCount = Math.ceil(total / limit)
 
@@ -104,15 +98,6 @@ console.log(newShops,"newshops")
        genre={genre}
         offset={offset}
         />
-        <div>
-        <Link href="/favorite">
-          <button  className=' w-28 bg-cyan-600'>
-            お気に入り
-
-          </button>
-           
-        </Link>
-        </div>
      <div className=' flex   ml-10 space-x-5 mt-5'>
               <p className='  '>検索結果</p>
               <p className=' text-red-600 font-bold '>{total}</p>
@@ -135,7 +120,6 @@ console.log(newShops,"newshops")
           displayPerPage={postPerPage}
            />
       )}
-      {newShops.find((like) =>  like.hasPostLiked) ? newShops.map((shop:any) => shop.name) : null}
       <div>
       <footer className=' justify-end flex'>
             <a  

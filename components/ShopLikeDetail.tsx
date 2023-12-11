@@ -1,8 +1,9 @@
 "use client"
 import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { trpc } from "@/trpc/react"
+
 
 import { cn } from "@/lib/utils"
 
@@ -80,6 +81,9 @@ import { cn } from "@/lib/utils"
               
           })
        }
+    useEffect(() =>{
+
+    },[])
 
       
 

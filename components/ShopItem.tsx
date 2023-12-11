@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ShopLikeDetail from "./ShopLikeDetail";
+import { memo } from "react";
 
 
 interface ShopItemProps {
@@ -10,6 +11,7 @@ interface ShopItemProps {
 
 
 const ShopItem = ({  shop, userId }: ShopItemProps) => {
+  
 
   return (
     <div className=" shadow-md rounded-md  mx-2 ">
@@ -42,12 +44,13 @@ const ShopItem = ({  shop, userId }: ShopItemProps) => {
             <p className="text-gray-700">{shop.address}</p>
             <p className="text-gray-700 font-bold">営業時間: </p>
             <p className=" text-gray-600">{shop.open}</p>
-            <p className=" text-gray-700">バンド</p>
-            <p className=" text-gray-600">{shop.band}</p>
+            {/* <p className=" text-gray-700">バンド</p>
+            <p className=" text-gray-600">{shop.band}</p> */}
           </div>
+          <ShopLikeDetail  shop={shop} userId={userId}  />
+
         </li>
       </ul>
-      <ShopLikeDetail  shop={shop} userId={userId}  />
 
     </div>
     
