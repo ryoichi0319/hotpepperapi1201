@@ -14,15 +14,11 @@ import { cn } from "@/lib/utils"
         
   }
 
-const ShopLikeDetail = ({shop,  userId}: ShopLikeDetailProps) => {
+ const ShopLikeDetail =  ({shop,  userId}: ShopLikeDetailProps) => {
     const filterLike = shop.like.filter((like:any) => like.postId === shop.id)
-    console.log(shop.id,"id")
     const router = useRouter()
     const [hasPostLiked, setHasPostLiked] = useState<boolean>(shop.hasPostLiked)
     const [likePostCount, setLikePostCount] = useState<number>(filterLike.length)
-
-    
-
     
       //いいね追加
       const { mutate: createPostLike, isLoading: createPostLikeLoading} =
@@ -56,7 +52,11 @@ const ShopLikeDetail = ({shop,  userId}: ShopLikeDetailProps) => {
          
        })
        
+       
        const handleCreatePostLike = () => {
+        if (!shop.id) {
+            return;
+        }
           
           setHasPostLiked(true)
           setLikePostCount(likePostCount + 1)
@@ -66,7 +66,8 @@ const ShopLikeDetail = ({shop,  userId}: ShopLikeDetailProps) => {
           })
        }
        const handleDeletePostLike = () =>{
-          if(!shop.postLikeId){
+
+    if (!shop.id || !shop.postLikeId) {
               return
           }
           if(likePostCount > 0){
@@ -80,11 +81,13 @@ const ShopLikeDetail = ({shop,  userId}: ShopLikeDetailProps) => {
           })
        }
 
+      
+
    
        return(
         <div className=" flex items-center">
 
-            {hasPostLiked ? (
+            {shop.hasPostLiked ? (
                 
                 <button
                    className="hover:bg-gray-100 p-2 rounded-full"
@@ -105,7 +108,10 @@ const ShopLikeDetail = ({shop,  userId}: ShopLikeDetailProps) => {
                     
                 </button>
             )}
-            {likePostCount > 0 && <div className=" pr-1">{likePostCount}</div>}
+{ filterLike.length > 0 && <div className=" pr-1">{filterLike.length}</div>}
+
+
+
         </div>
      )
 } 

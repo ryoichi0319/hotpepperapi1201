@@ -6,6 +6,9 @@ import {postPerPage} from "@/data/perPage"
 import Image from 'next/image';
 import { getAuthSession } from '@/lib/nextauth';
 import { trpc } from '@/trpc/client';
+import Link from 'next/link';
+import FavoriteButton from './favorite/page';
+
 interface HomeProps {
   searchParams: {
     [key: string]: string | undefined;
@@ -23,9 +26,13 @@ async function fetchAllData({ keyword, large_service_area, genre,offset,  }
      }
      
     ) {
-  const res = await fetch(`https://hotpepperapi1201-ryoichi0319.vercel.app/api/search?keyword=${keyword}
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/search?keyword=${keyword}
   &large_service_area=${large_service_area}&genre=${genre}&start=${offset}`, {
     cache: "no-store", //SSR
+    method: "GET",
+    headers: {
+      "Content-Type" : "application/json",
+  },
   });
   const data = await res.json();
   return data;
@@ -47,6 +54,7 @@ export default async function Home({ searchParams }: HomeProps) {
   // start プロパティの型を number | undefined に設定
 
   console.log(searchParams, "search");
+
   const shops = await fetchAllData({
     keyword,
     large_service_area,
@@ -55,23 +63,31 @@ export default async function Home({ searchParams }: HomeProps) {
     offset,
     userId: user?.id
   });
-  const {like,likes } = await trpc.like.getLikes({
+  const {like, likes } = await trpc.like.getLikes({
     userId: user?.id,
   })
-  const newShops = shops.results.shop.map((shop:any) =>{
-    const userLike = userId
-    ? like.find((like) => like.userId === userId && shop.id === like.postId )
-    : null
+  
 
-    return {
-      ...shop,
-      hasPostLiked: !!userLike,
-      postLikeId: userLike ? userLike.id : null,
-      like
-      
-    }
-  })
+  const newShops = await Promise.all(
+    shops.results.shop.map(async (shop: any) => {
+      const userLike = userId
+        ? like.find((like) => like.userId === userId && shop.id === like.postId)
+        : null;
+  
+      return {
+        ...shop,
+        hasPostLiked: !!userLike,
+        postLikeId: userLike ? userLike.id : null,
+        like,
+      };
+    })
+  );
 
+
+    
+  
+  
+console.log(newShops,"newshops")
 
   const total = shops.total
   const pageCount = Math.ceil(total / limit)
@@ -88,6 +104,15 @@ export default async function Home({ searchParams }: HomeProps) {
        genre={genre}
         offset={offset}
         />
+        <div>
+        <Link href="/favorite">
+          <button  className=' w-28 bg-cyan-600'>
+            お気に入り
+
+          </button>
+           
+        </Link>
+        </div>
      <div className=' flex   ml-10 space-x-5 mt-5'>
               <p className='  '>検索結果</p>
               <p className=' text-red-600 font-bold '>{total}</p>
@@ -110,6 +135,7 @@ export default async function Home({ searchParams }: HomeProps) {
           displayPerPage={postPerPage}
            />
       )}
+      {newShops.find((like) =>  like.hasPostLiked) ? newShops.map((shop:any) => shop.name) : null}
       <div>
       <footer className=' justify-end flex'>
             <a  

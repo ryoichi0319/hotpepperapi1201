@@ -101,7 +101,7 @@ const Profile = ({ user }: ProfileProps) => {
     }
     return(
         <div>
-            <div className=" text-xl font-bold text-center mb-5">プロフィール</div>
+            <div className=" text-xl font-bold text-center mb-5 mt-8">プロフィール</div>
             <Form {...form}>
                 <div className=" mb-5">
                     <ImageUploading

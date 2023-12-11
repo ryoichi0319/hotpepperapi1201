@@ -21,15 +21,16 @@ const ShopItem = ({  shop, userId }: ShopItemProps) => {
         >
           <div>
             <Link href={shop.urls.pc}>
-              
+              <div className="aspect-[16/9] relative overflow-hidden rounded-md">
               <Image
-                className="aspect-[16/9] rounded-md  transition-all hover:scale-105 object-cover "
+                className="   transition-all hover:scale-105 object-cover "
                 src={shop.photo.pc.m}
                 alt={shop.name}
                 width={250}
                 height={250}
                 priority
               />
+              </div>
             </Link>
             </div>
 
@@ -41,6 +42,8 @@ const ShopItem = ({  shop, userId }: ShopItemProps) => {
             <p className="text-gray-700">{shop.address}</p>
             <p className="text-gray-700 font-bold">営業時間: </p>
             <p className=" text-gray-600">{shop.open}</p>
+            <p className=" text-gray-700">バンド</p>
+            <p className=" text-gray-600">{shop.band}</p>
           </div>
         </li>
       </ul>

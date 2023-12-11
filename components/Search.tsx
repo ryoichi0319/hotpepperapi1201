@@ -65,9 +65,13 @@ const Search = ({ keyword, large_service_area, genre,offset }: any) => {
             genre: genreRef.current?.value,
             page: "1"
           })}`
+
         );
+        router.refresh()
+
+
       });
-      inputRef.current.value = "";
+
     }
   };
 
@@ -104,11 +108,12 @@ const Search = ({ keyword, large_service_area, genre,offset }: any) => {
           </select>
         </div>
         <button
-          type="submit"
-          className="p-2 bg-orange-500 text-white rounded cursor-pointer hover:bg-orange-400 transition-all duration-300"
-        >
-          検索
-        </button>
+  type="submit"
+  disabled={isPending}
+  className="p-2  w-28 bg-orange-500 text-white rounded cursor-pointer hover:bg-orange-400 transition-all duration-300"
+>
+  {isPending ? "検索中..." : "検索"}
+</button>
       </form>
     </div>
   );
