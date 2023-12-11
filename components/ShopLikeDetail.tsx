@@ -80,6 +80,8 @@ import { cn } from "@/lib/utils"
               
           })
        }
+       const filterName = shop.like.filter((like:any) =>like.postId === shop.id && like.userId === userId)
+      console.log(filterName,"filterName")
 
       
 
