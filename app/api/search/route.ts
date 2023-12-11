@@ -37,5 +37,8 @@ return NextResponse.json({
     headers: {
       "Content-Type": "application/json",
       "Cache-Control": "no-cache", // For server-side rendering (SSR)
+      key: "Access-Control-Allow-Methods",
+
+      value: "GET,OPTIONS,POST",
     },
   });}
