@@ -37,8 +37,8 @@ return NextResponse.json({
     headers: {
       "Content-Type": "application/json",
       "Cache-Control": "no-cache", // For server-side rendering (SSR)
-      key: "Access-Control-Allow-Methods",
-
-      value: "GET,OPTIONS,POST",
+      "Access-Control-Allow-Origin": "hotpepperapi1201-ryoichi0319.vercel.app", // すべてのオリジンからの要求を許可
+      "Access-Control-Allow-Methods": "GET,OPTIONS,POST",
+    
     },
   });}
