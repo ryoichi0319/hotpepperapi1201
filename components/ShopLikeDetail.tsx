@@ -1,25 +1,27 @@
 "use client"
 import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { trpc } from "@/trpc/react"
-
 
 import { cn } from "@/lib/utils"
 
   
   
   interface ShopLikeDetailProps {
-    shop: any 
     userId: string | undefined
+    like: any
+    hasPostLiked: boolean
+    postLikeId: string | undefined
+    id: string | undefined
         
   }
 
- const ShopLikeDetail =  ({shop,  userId}: ShopLikeDetailProps) => {
-    const filterLike = shop.like.filter((like:any) => like.postId === shop.id)
+ const ShopLikeDetail =  ({like,hasPostLiked,postLikeId,id,  userId}: ShopLikeDetailProps) => {
+    const filterLike = like.filter((like:any) => like.postId === id)
     const router = useRouter()
-    const [hasPostLiked, setHasPostLiked] = useState<boolean>(shop.hasPostLiked)
-    const [likePostCount, setLikePostCount] = useState<number>(filterLike.length)
+    const [has, setHasPostLiked] = useState<boolean>(hasPostLiked)
+    const [likePostCount, setLikePostCount] = useState<number>(like.length)
     
       //いいね追加
       const { mutate: createPostLike, isLoading: createPostLikeLoading} =
@@ -55,7 +57,7 @@ import { cn } from "@/lib/utils"
        
        
        const handleCreatePostLike = () => {
-        if (!shop.id) {
+        if (!id) {
             return;
         }
           
@@ -63,12 +65,12 @@ import { cn } from "@/lib/utils"
           setLikePostCount(likePostCount + 1)
   
           createPostLike({
-              postId: shop.id,
+              postId: id,
           })
        }
        const handleDeletePostLike = () =>{
 
-    if (!shop.id || !shop.postLikeId) {
+    if (!id || !postLikeId) {
               return
           }
           if(likePostCount > 0){
@@ -77,13 +79,10 @@ import { cn } from "@/lib/utils"
           }
   
           deletePostLike({
-              postLikeId: shop.postLikeId,
+              postLikeId: postLikeId,
               
           })
        }
-    useEffect(() =>{
-
-    },[])
 
       
 
@@ -91,7 +90,7 @@ import { cn } from "@/lib/utils"
        return(
         <div className=" flex items-center">
 
-            {shop.hasPostLiked ? (
+            {has ? (
                 
                 <button
                    className="hover:bg-gray-100 p-2 rounded-full"
