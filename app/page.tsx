@@ -30,10 +30,7 @@ async function fetchAllData({ keyword, large_service_area, genre,offset,  }
     method: "GET",
     headers: {
       "Content-Type" : "application/json",
-      key: "Access-Control-Allow-Methods",
-
-      value: "GET,OPTIONS,POST",
-
+     
   },
   });
   
