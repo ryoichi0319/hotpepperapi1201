@@ -25,7 +25,7 @@ async function fetchAllData({ keyword, large_service_area, genre,offset,  }
      }
      
     ) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/search?keyword=${keyword}
+  const res = await fetch(`https://hotpepperapi1201-ryoichi0319.vercel.app/api/search?keyword=${keyword}
   &large_service_area=${large_service_area}&genre=${genre}&start=${offset}`, {
     cache: "no-store", //SSR
     method: "GET",
