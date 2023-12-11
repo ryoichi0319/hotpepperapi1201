@@ -32,12 +32,12 @@ return NextResponse.json({
     genre,
     total,
     offset,
-  },     { status: 200, headers: corsHeaders })
-
-  }
-
-  export const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization",
-  };
+  }, {
+    status: 200,
+    headers: {
+     "Content-Type": "application/json",
+    "Cache-Control": "no-cache", // For server-side rendering (SSR)
+    "Access-Control-Allow-Origin": "*", // すべてのオリジンからの要求を許可
+    "Access-Control-Allow-Methods": "GET,OPTIONS,POST",
+    },
+  });}
