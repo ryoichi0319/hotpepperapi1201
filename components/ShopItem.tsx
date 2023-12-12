@@ -1,6 +1,10 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import ShopLikeDetail from "./ShopLikeDetail";
+import React from "react";
+
 
 
 interface ShopItemProps {
@@ -9,7 +13,7 @@ interface ShopItemProps {
 }
 
 
-const ShopItem = ({  shop, userId }: ShopItemProps) => {
+const ShopItem = React.memo(({  shop, userId }: ShopItemProps) => {
   return (
     <div className=" shadow-md rounded-md  mx-2 ">
 
@@ -51,6 +55,8 @@ const ShopItem = ({  shop, userId }: ShopItemProps) => {
     </div>
     
   );
-};
+});
 
 export default ShopItem;
+
+ShopItem.displayName = "ShopItem"
