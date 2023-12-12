@@ -6,7 +6,6 @@ import {postPerPage} from "@/data/perPage"
 import Image from 'next/image';
 import { getAuthSession } from '@/lib/nextauth';
 import { trpc } from '@/trpc/client';
-import Link from 'next/link';
 
 interface HomeProps {
   searchParams: {
@@ -25,7 +24,7 @@ async function fetchAllData({ keyword, large_service_area, genre,offset,  }
      }
      
     ) {
-  const res = await fetch(`https://hotpepperapi1201-ryoichi0319.vercel.app/api/search?keyword=${keyword}
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/search?keyword=${keyword}
   &large_service_area=${large_service_area}&genre=${genre}&start=${offset}`, {
     cache: "no-store", //SSR
     method: "GET",
@@ -83,10 +82,6 @@ export default async function Home({ searchParams }: HomeProps) {
   );
 
 
-    
-  
-  
-console.log(newShops,"newshops")
 
   const total = shops.total
   const pageCount = Math.ceil(total / limit)
@@ -104,7 +99,6 @@ console.log(newShops,"newshops")
         offset={offset}
         />
         <div>
-       
         </div>
      <div className=' flex   ml-10 space-x-5 mt-5'>
               <p className='  '>検索結果</p>
