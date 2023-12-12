@@ -60,7 +60,7 @@ export default async function Home({ searchParams }: HomeProps) {
     offset,
     userId: user?.id
   });
-  const {like, likes } = await trpc.like.getLikes({
+  const {like } = await trpc.like.getLikes({
     userId: user?.id,
   })
   
@@ -113,7 +113,7 @@ export default async function Home({ searchParams }: HomeProps) {
       ) : (
         <div className="grid grid-cols-1 sm:gap-3 md:grid-cols-2 lg:grid-cols-3     ">
           {newShops.map((shop: any) => (
-                   <ShopItem key={shop.id} shop={ shop } userId={userId}/>  ))}
+                   <ShopItem key={shop.id} shop={ shop } userId={userId} />  ))}
 
         </div>
       )}
