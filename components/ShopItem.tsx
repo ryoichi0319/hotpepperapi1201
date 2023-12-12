@@ -45,8 +45,7 @@ const ShopItem = React.memo(({  shop, userId }: ShopItemProps) => {
             <p className="text-gray-700">{shop.address}</p>
             <p className="text-gray-700 font-bold">営業時間: </p>
             <p className=" text-gray-600">{shop.open}</p>
-            <p className=" text-gray-700">バンド</p>
-            <p className=" text-gray-600">{shop.band}</p>
+            
           </div>
         </li>
       </ul>
