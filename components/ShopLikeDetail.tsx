@@ -18,12 +18,12 @@ import { cn } from "@/lib/utils"
   }
 
  const ShopLikeDetail =  ({like,id,hasPostLiked,postLikeId,  userId}: ShopLikeDetailProps) => {
-    const filterLike = async() => await like.filter((like:any) => like.postId === id)
-    console.log(filterLike,"filter")
+    const filterLike = like.filter((like:any) => like.postId === id)
     const router = useRouter()
     const [has, setHasPostLiked] = useState<boolean>(hasPostLiked)
     const [likePostCount, setLikePostCount] = useState<number>(filterLike.length)
 
+    
     
       //いいね追加
       const { mutate: createPostLike, isLoading: createPostLikeLoading} =
