@@ -38,6 +38,6 @@ return NextResponse.json({
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
       "Cache-Control": "no-cache", // For server-side rendering (SSR)
     "Access-Control-Allow-Origin": "*", // すべてのオリジンからの要求を許可
-    "Access-Control-Allow-Methods": "GET,OPTIONS,POST",
+    "Access-Control-Allow-Methods": "GET,OPTIONS",
     },
   });}
