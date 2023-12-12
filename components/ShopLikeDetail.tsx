@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils"
     const router = useRouter()
     const [has, setHasPostLiked] = useState<boolean>(hasPostLiked)
     const [likePostCount, setLikePostCount] = useState<number>(filterLike.length)
+
     
       //いいね追加
       const { mutate: createPostLike, isLoading: createPostLikeLoading} =
