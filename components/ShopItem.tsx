@@ -50,7 +50,7 @@ const ShopItem = React.memo(({  shop, userId }: ShopItemProps) => {
           </div>
         </li>
       </ul>
-      <ShopLikeDetail userId={userId} hasPostLiked={shop.hasPostLiked} postLikeId={shop.postLikeId} id={shop.id} like={shop.like} />
+      <ShopLikeDetail userId={userId} hasPostLiked={shop.hasPostLiked} postLikeId={shop.postLikeId} id={shop.id} like={shop.like}/>
 
     </div>
     
