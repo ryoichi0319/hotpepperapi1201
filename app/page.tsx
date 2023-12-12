@@ -66,8 +66,7 @@ export default async function Home({ searchParams }: HomeProps) {
   })
   
 
-  const newShops = await Promise.all(
-    shops.results.shop.map(async (shop: any) => {
+  const newShops = shops.results.shop.map( (shop: any) => {
       const userLike = userId
         ? like.find((like) => like.userId === userId && shop.id === like.postId)
         : null;
@@ -79,7 +78,7 @@ export default async function Home({ searchParams }: HomeProps) {
         like,
       };
     })
-  );
+  
 
 
 
