@@ -66,7 +66,8 @@ export default async function Home({ searchParams }: HomeProps) {
   })
   
 
-  const newShops = shops.results.shop.map( (shop: any) => {
+  const newShops = await Promise.all(
+    shops.results.shop.map(async (shop: any) => {
       const userLike = userId
         ? like.find((like) => like.userId === userId && shop.id === like.postId)
         : null;
@@ -78,9 +79,10 @@ export default async function Home({ searchParams }: HomeProps) {
         like,
       };
     })
-  
+  );
 
 
+    
 
   const total = shops.total
   const pageCount = Math.ceil(total / limit)
@@ -98,6 +100,7 @@ export default async function Home({ searchParams }: HomeProps) {
         offset={offset}
         />
         <div>
+       
         </div>
      <div className=' flex   ml-10 space-x-5 mt-5'>
               <p className='  '>検索結果</p>
@@ -121,6 +124,7 @@ export default async function Home({ searchParams }: HomeProps) {
           displayPerPage={postPerPage}
            />
       )}
+      {newShops.find((like) =>  like.hasPostLiked) ? newShops.map((shop:any) => shop.name) : null}
       <div>
       <footer className=' justify-end flex'>
             <a  
