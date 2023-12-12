@@ -124,7 +124,6 @@ export default async function Home({ searchParams }: HomeProps) {
           displayPerPage={postPerPage}
            />
       )}
-      {newShops.find((like) =>  like.hasPostLiked) ? newShops.map((shop:any) => shop.name) : null}
       <div>
       <footer className=' justify-end flex'>
             <a  

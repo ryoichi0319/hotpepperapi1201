@@ -10,7 +10,6 @@ interface ShopItemProps {
 
 
 const ShopItem = ({  shop, userId }: ShopItemProps) => {
-
   return (
     <div className=" shadow-md rounded-md  mx-2 ">
 
@@ -47,7 +46,7 @@ const ShopItem = ({  shop, userId }: ShopItemProps) => {
           </div>
         </li>
       </ul>
-      <ShopLikeDetail  shop={shop} userId={userId}  />
+      <ShopLikeDetail userId={userId} hasPostLiked={shop.hasPostLiked} postLikeId={shop.postLikeId} id={shop.id} like={shop.like} />
 
     </div>
     
