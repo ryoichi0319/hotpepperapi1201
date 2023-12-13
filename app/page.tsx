@@ -97,7 +97,6 @@ export default async function Home({ searchParams }: HomeProps) {
       large_service_area={large_service_area}
        genre={genre}
         offset={offset}
-        aaaa
         />
         <div>
        
