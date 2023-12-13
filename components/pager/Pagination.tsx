@@ -86,7 +86,7 @@ const PaginationButton = ({
   }, [pageCount, page, siblingCount])
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 pb-10 mt-7">
+    <div className="flex flex-wrap items-center justify-center gap-2 mt-7">
       <Button
         variant="outline"
         size="icon"

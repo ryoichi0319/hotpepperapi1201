@@ -3,6 +3,7 @@ import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { trpc } from "@/trpc/react"
+import { motion } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -94,15 +95,25 @@ import { cn } from "@/lib/utils"
         <div className=" flex justify-end items-center mt-3">
 
             {hasPostLiked ? (
-                
+                <motion.div animate={{
+                    scale: [1, 2, 2, 1, 1],
+                    rotate: [0, 0, 180, 270, 0],
+                    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                  }}>
                 <button
                    className="hover:bg-gray-100 p-2 rounded-full"
                    disabled={createPostLikeLoading || deletePostLikeLoading}
                    onClick={handleDeletePostLike}
                    >
                     <HeartFilledIcon className=" w-5 h-5 text-pink-500" />
-                   </button>    
+                   </button>  
+                   </motion.div>
+
             ): (
+                <motion.div animate={{
+                    scale: [1,  1, 1],
+                    borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                  }}>
                 <button 
                     className={cn("p-2", userId && "hover:bg-gray-100 rounded-full")}
                     disabled={
@@ -113,6 +124,7 @@ import { cn } from "@/lib/utils"
                         <HeartIcon className=" w-5 h-5" />
                     
                 </button>
+                </motion.div>
             )}
 { filterLike.length > 0 && <div className=" pr-1">{filterLike.length}</div>}
 

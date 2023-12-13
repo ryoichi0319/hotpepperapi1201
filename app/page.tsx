@@ -101,15 +101,15 @@ export default async function Home({ searchParams }: HomeProps) {
         <div>
        
         </div>
-     <div className=' flex   ml-10 space-x-5 mt-5'>
-              <p className='  '>検索結果</p>
+     <div className=' flex justify-center  space-x-5 mt-5  '>
+              <p className=' '>検索結果</p>
               <p className=' text-red-600 font-bold '>{total}</p>
               <p>件</p>
               
               <p>{page} / {pageCount}</p>
               </div>
       {total === 0 ? (
-        <p>データがありません</p>
+        <p className=' mt-3 text-center font-semibold'>検索結果がありません。条件を変えて検索して下さい。</p>
       ) : (
         <div className="grid grid-cols-1 sm:gap-3 md:grid-cols-2 lg:grid-cols-3     ">
           {newShops.map((shop: any) => (
