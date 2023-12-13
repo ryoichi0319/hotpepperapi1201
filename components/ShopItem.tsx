@@ -46,8 +46,9 @@ const ShopItem = React.memo(({  shop, userId }: ShopItemProps) => {
             <p className="text-gray-700 font-bold">営業時間: </p>
             <p className=" text-gray-600">{shop.open}</p>
             <div>
+              <div>
             <ShopLikeDetail userId={userId} hasPostLiked={shop.hasPostLiked} postLikeId={shop.postLikeId} id={shop.id} like={shop.like}/>
-
+            </div>
             </div>
             
           </div>

@@ -7,7 +7,7 @@ import { GenreCategory } from "@/data/genre";
 
 const Search = ({ keyword, large_service_area, genre,offset }: any) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const large_service_areaRef = useRef<HTMLSelectElement | null>(null);
+  const large_service_areaRef = useRef<HTMLSelectElement | null>(large_service_area);
   const genreRef = useRef<HTMLSelectElement | null>(null);
   const router = useRouter();
   const pathname = usePathname();
@@ -76,7 +76,7 @@ const Search = ({ keyword, large_service_area, genre,offset }: any) => {
   };
 
   return (
-    <div className=" bg-gray-800 pr-5   w-full z-10">
+    <div className=" bg-gray-800 pr-5 text-center  w-full z-10">
       <form onSubmit={onSubmit} className="flex flex-col lg:flex-row pb-5 items-center justify-end gap-4 ">
         <div className="md:flex flex-col  md:flex-row space-x-7 md:space-x-0  items-center gap-4">
           <label className="text-white">キーワード</label>

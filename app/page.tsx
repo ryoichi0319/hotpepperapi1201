@@ -24,7 +24,7 @@ async function fetchAllData({ keyword, large_service_area, genre,offset,  }
      }
      
     ) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/search?keyword=${keyword}
+  const res = await fetch(`http://localhost:3000/api/search?keyword=${keyword}
   &large_service_area=${large_service_area}&genre=${genre}&start=${offset}`, {
     method: "GET",
     headers: {
@@ -89,7 +89,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
   
   return (
-    <div className=" ">
+    <div className="	">
            
 
      <Search
@@ -123,21 +123,7 @@ export default async function Home({ searchParams }: HomeProps) {
           displayPerPage={postPerPage}
            />
       )}
-      <div>
-      <footer className=' justify-end flex'>
-            <a  
-            href="http://webservice.recruit.co.jp/">
-              <Image
-              
-                src="http://webservice.recruit.co.jp/banner/hotpepper-s.gif"
-                alt="ホットペッパーグルメ Webサービス"
-                width="135"
-                height="17"
-                title="ホットペッパーグルメ Webサービス"
-              />
-            </a>
-          </footer>
-      </div>
+     
     </div>
   );
 }
