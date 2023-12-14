@@ -3,6 +3,7 @@ import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { trpc } from "@/trpc/react"
+import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils"
 
@@ -22,6 +23,7 @@ import { cn } from "@/lib/utils"
     const router = useRouter()
     const [has, setHasPostLiked] = useState<boolean>(hasPostLiked)
     const [likePostCount, setLikePostCount] = useState<number>(filterLike.length)
+
 
     
     
@@ -59,9 +61,18 @@ import { cn } from "@/lib/utils"
        
        
        const handleCreatePostLike = () => {
+
+        if (userId === undefined) {
+            // ユーザーIDがundefinedの場合はログインページにリダイレクト
+            
+            router.push("/login");
+            return;
+          }
+     
         if (!id) {
             return;
         }
+
           
           setHasPostLiked(true)
           setLikePostCount(likePostCount + 1)
@@ -92,8 +103,15 @@ import { cn } from "@/lib/utils"
    
        return(
         <div className=" flex justify-end items-center mt-3">
-
+      
             {hasPostLiked ? (
+                 <motion.div
+                 animate={{
+                   scale: [1, 2, 2, 1, 1],
+                   rotate: [0, 0, 180, 270, 0],
+                   borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+                 }}
+               >
                 
                 <button
                    className="hover:bg-gray-100 p-2 rounded-full"
@@ -101,24 +119,39 @@ import { cn } from "@/lib/utils"
                    onClick={handleDeletePostLike}
                    >
                     <HeartFilledIcon className=" w-5 h-5 text-pink-500" />
-                   </button>    
+                   </button> 
+                   </motion.div>
+   
             ): (
-                <button 
-                    className={cn("p-2", userId && "hover:bg-gray-100 rounded-full")}
-                    disabled={
-                     createPostLikeLoading || deletePostLikeLoading || !userId
-                    }
-                    onClick={handleCreatePostLike}
-                    >
-                        <HeartIcon className=" w-5 h-5" />
-                    
+               
+                <motion.div
+                animate={{
+                  scale: [2, 1, 1, 1, 1],
+                }}
+                transition={{
+                  type: "spring", // アニメーションの種類
+                  stiffness: 100, // バネの硬さ
+                  damping: 10, // バネの減衰
+                }}
+              >
+                <button
+                  className={cn("p-2 transition-all duration-300", userId && "hover:bg-gray-100 rounded-full")}
+                  disabled={createPostLikeLoading || deletePostLikeLoading}
+                  onClick={handleCreatePostLike}
+                >
+                  <HeartIcon className="w-5 h-5" />
                 </button>
+              </motion.div>
+
+                
             )}
 { filterLike.length > 0 && <div className=" pr-1">{filterLike.length}</div>}
 
 
 
+                
         </div>
+
      )
 } 
 export default ShopLikeDetail

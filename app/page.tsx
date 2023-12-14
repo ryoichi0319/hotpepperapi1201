@@ -24,7 +24,7 @@ async function fetchAllData({ keyword, large_service_area, genre,offset,  }
      }
      
     ) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/search?keyword=${keyword}
+  const res = await fetch(`http://localhost:3000/api/search?keyword=${keyword}
   &large_service_area=${large_service_area}&genre=${genre}&start=${offset}`, {
     method: "GET",
     headers: {
@@ -50,7 +50,6 @@ export default async function Home({ searchParams }: HomeProps) {
 
   // start プロパティの型を number | undefined に設定
 
-  console.log(searchParams, "search");
 
   const shops = await fetchAllData({
     keyword,
@@ -89,7 +88,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
   
   return (
-    <div className=" ">
+    <div className="	">
            
 
      <Search
@@ -101,15 +100,15 @@ export default async function Home({ searchParams }: HomeProps) {
         <div>
        
         </div>
-     <div className=' flex   ml-10 space-x-5 mt-5'>
-              <p className='  '>検索結果</p>
+     <div className=' flex justify-center  space-x-5 mt-5  '>
+              <p className=' '>検索結果</p>
               <p className=' text-red-600 font-bold '>{total}</p>
               <p>件</p>
               
               <p>{page} / {pageCount}</p>
               </div>
       {total === 0 ? (
-        <p>データがありません</p>
+        <p className=' mt-3 text-center font-semibold'>検索結果がありません。条件を変えて検索して下さい。</p>
       ) : (
         <div className="grid grid-cols-1 sm:gap-3 md:grid-cols-2 lg:grid-cols-3     ">
           {newShops.map((shop: any) => (
@@ -123,21 +122,7 @@ export default async function Home({ searchParams }: HomeProps) {
           displayPerPage={postPerPage}
            />
       )}
-      <div>
-      <footer className=' justify-end flex'>
-            <a  
-            href="http://webservice.recruit.co.jp/">
-              <Image
-              
-                src="http://webservice.recruit.co.jp/banner/hotpepper-s.gif"
-                alt="ホットペッパーグルメ Webサービス"
-                width="135"
-                height="17"
-                title="ホットペッパーグルメ Webサービス"
-              />
-            </a>
-          </footer>
-      </div>
+     
     </div>
   );
 }

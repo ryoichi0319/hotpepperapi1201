@@ -12,13 +12,19 @@ type NavigationProps = {
 const Navigation = ({user}: NavigationProps) =>{
     return (
         <header className=" ">
-      <div className="container mx-auto flex bg-gray-800 items-center   justify-end  py-3">
+      <div className="container mx-auto flex bg-gray-800 items-center justify-between py-3">
+        <Link href={"/"}>
+      <button className=" bg-slate-400 hover:bg-slate-300 text-white font-bold py-2 px-4 rounded-full">
+        Home
+      </button>
+      </Link>
         
         
        {user ? (
         <UserNavigation user={user} />
        ) : (
         <div className="flex items-center space-x-4  ">
+
             <Button asChild variant="ghost" className="font-bold bg-cyan-800 text-white">
                 <Link href="/login">ログイン</Link>
             </Button>

@@ -38,7 +38,9 @@ const UserNavigation = ({user}: UserNavigationProps) =>{
                 <div className=" break-words min-w-0">
                     <div className=" mb-2">{user.name || ""}</div>
                     <div className=" text-gray-500">{user.email || ""}</div>
+                    <div>❤️したショップ</div>
                 </div>
+
             </DropdownMenuItem>
             </Link>
 
