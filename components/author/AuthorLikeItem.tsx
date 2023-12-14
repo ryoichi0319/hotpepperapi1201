@@ -9,7 +9,6 @@ interface AuthorLikeItemProps {
 }
 
 const AuthorLikeItem = ({ like, likes }: AuthorLikeItemProps) => {
-  console.log(likes.results.shop.filter((shop: any) => shop.id === like.postId), "!!!!");
 
   const filteredShops = likes.results.shop.filter((shop: any) => shop.id === like.postId);
 
