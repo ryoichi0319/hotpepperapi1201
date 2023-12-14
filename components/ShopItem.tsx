@@ -13,7 +13,7 @@ interface ShopItemProps {
 }
 
 
-const ShopItem = React.memo(({  shop, userId }: ShopItemProps) => {
+const ShopItem = ({  shop, userId }: ShopItemProps) => {
   return (
     <div className=" shadow-md rounded-md  mx-2 ">
 
@@ -58,8 +58,7 @@ const ShopItem = React.memo(({  shop, userId }: ShopItemProps) => {
     </div>
     
   );
-});
+};
 
 export default ShopItem;
 
-ShopItem.displayName = "ShopItem"
