@@ -19,6 +19,7 @@ const response = await fetch(
 &genre=${genre}&format=${format}&keyword=${keyword}&count=10&start=${offset}`
 );
 
+
 const data = await response.json();
 const { results } = data;
 

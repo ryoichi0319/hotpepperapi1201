@@ -46,7 +46,7 @@ const AuthorSearch = ({ large_service_area }: any) => {
     if (large_service_areaRef.current) {
         startTransition(() => {
         router.push(
-          `https://hotpepperapi1201-ryoichi0319.vercel.app${pathname}?${createQueryString({
+          `http://localhost:3000${pathname}?${createQueryString({
             large_service_area: large_service_areaRef.current?.value,
           })}`
 
