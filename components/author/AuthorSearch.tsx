@@ -40,7 +40,6 @@ const AuthorSearch = ({ large_service_area }: any) => {
     },
     [searchParams]
   );
-console.log(pathname,"pathname")
   // Handle form submission
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
