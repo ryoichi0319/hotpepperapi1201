@@ -47,7 +47,7 @@ console.log(pathname,"pathname")
     if (large_service_areaRef.current) {
         startTransition(() => {
         router.push(
-          `http://localhost:3000${pathname}?${createQueryString({
+          `https://hotpepperapi1201-ryoichi0319.vercel.app${pathname}?${createQueryString({
             large_service_area: large_service_areaRef.current?.value,
           })}`
 

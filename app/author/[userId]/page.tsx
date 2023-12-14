@@ -14,7 +14,7 @@ async function fetchAllData({  large_service_area  }
        large_service_area: string | undefined
        }  ) {
 
-    const res = await fetch(`http://localhost:3000/api/like?large_service_area=${large_service_area}`
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/like?large_service_area=${large_service_area}`
     , {
         cache: "no-store", //SSR
 
