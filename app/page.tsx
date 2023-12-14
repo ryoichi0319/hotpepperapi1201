@@ -50,7 +50,6 @@ export default async function Home({ searchParams }: HomeProps) {
 
   // start プロパティの型を number | undefined に設定
 
-  console.log(searchParams, "search");
 
   const shops = await fetchAllData({
     keyword,

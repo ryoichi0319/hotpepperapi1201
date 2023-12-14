@@ -67,6 +67,44 @@ export const userRouter = router({
                 })
             }
         }
-    })
+    }),
+
+    getUserByIdLike: publicProcedure
+        .input(
+            z.object({
+                userId: z.string().optional(),
+            })
+        )
+        .query(async ({ input}) =>{
+            try{
+                const  { userId } = input
+                
+                if (!userId){
+                    return null
+                }
+
+                //ユーザーいいね取得
+                const user = await prisma.user.findUnique({
+                    where: {id : userId},
+                    include: {
+                        likes: {
+                            orderBy:{
+                                updatedAt: "desc",
+                            }
+                        }
+                    }
+                })
+                if(!user){
+                    return null
+                }
+                return user
+            }catch(error){
+                console.log(error)
+                throw new TRPCError({
+                    code: "INTERNAL_SERVER_ERROR",
+                    message: "ユーザー投稿詳細の取得に失敗しました"
+                })
+            }
+        })
     
 })

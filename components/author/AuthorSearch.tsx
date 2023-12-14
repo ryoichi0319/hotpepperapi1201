@@ -3,24 +3,18 @@
 import { useRef, useTransition, useCallback, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PrefCategory } from "@/data/prefecture";
-import { GenreCategory } from "@/data/genre";
 
-const Search = ({ keyword, large_service_area, genre,offset }: any) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+
+const AuthorSearch = ({ large_service_area }: any) => {
   const large_service_areaRef = useRef<HTMLSelectElement | null>(large_service_area);
-  const genreRef = useRef<HTMLSelectElement | null>(null);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
+  
   // Page transition management hook
   const [isPending, startTransition] = useTransition();
   // Handle keyword change
-  useEffect(() => {
-    if (inputRef.current && keyword) {
-      inputRef.current.value = keyword;
-    }
-  }, [keyword]);
+
 
   // Handle large service area change
   useEffect(() => {
@@ -29,12 +23,6 @@ const Search = ({ keyword, large_service_area, genre,offset }: any) => {
     }
   }, [large_service_area]);
 
-  // Handle genre change
-  useEffect(() => {
-    if (genreRef.current && genre) {
-      genreRef.current.value = genre;
-    }
-  }, [genre]);
 
   // Create query string
   const createQueryString = useCallback(
@@ -52,57 +40,35 @@ const Search = ({ keyword, large_service_area, genre,offset }: any) => {
     },
     [searchParams]
   );
+console.log(pathname,"pathname")
   // Handle form submission
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputRef.current) {
-      startTransition(() => {
+    if (large_service_areaRef.current) {
+        startTransition(() => {
         router.push(
-          `/${pathname}?${createQueryString({
-            keyword: inputRef.current?.value,
+          `http://localhost:3000${pathname}?${createQueryString({
             large_service_area: large_service_areaRef.current?.value,
-            genre: genreRef.current?.value,
-            page: "1"
           })}`
-          
 
         );
-        router.refresh()
 
 
-      });
+      });}
 
-    }
+    
   };
 
   return (
     <div className=" bg-gray-800 pr-5 text-center  w-full z-10">
       <form onSubmit={onSubmit} className="flex flex-col lg:flex-row pb-5 items-center justify-end gap-4 ">
-        <div className="md:flex flex-col  md:flex-row space-x-7 md:space-x-0  items-center gap-4">
-          <label className="text-white">キーワード</label>
-          <input
-            type="text"
-            ref={inputRef}
-            className="p-2 border rounded w-64"
-            placeholder="キーワード検索"
-          />
-        </div>
+       
         <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0  items-center gap-4">
           <label className="text-white mr-11 lg:mr-0">地域</label>
           <select className="p-2 border rounded w-64" ref={large_service_areaRef}>
             {PrefCategory.map((category, index) => (
               <option key={index} value={category.large_service_area}>
                 {category.category_name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0 items-center gap-4 ">
-          <label className="text-white mr-4  lg:mr-0 ">ジャンル</label>
-          <select className="p-2 border rounded w-64" ref={genreRef}>
-            {GenreCategory.map((genre, index) => (
-              <option key={index} value={genre.genre}>
-                {genre.genre_name}
               </option>
             ))}
           </select>
@@ -119,4 +85,4 @@ const Search = ({ keyword, large_service_area, genre,offset }: any) => {
   );
 };
 
-export default Search;
+export default AuthorSearch;
