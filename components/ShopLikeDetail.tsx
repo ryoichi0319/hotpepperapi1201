@@ -104,7 +104,7 @@ import { cn } from "@/lib/utils"
        return(
         <div className=" flex justify-end items-center mt-3">
       
-            {hasPostLiked ? (
+            {has ? (
                  <motion.div
                  animate={{
                    scale: [1, 2, 2, 1, 1],
