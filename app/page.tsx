@@ -59,7 +59,7 @@ export default async function Home({ searchParams }: HomeProps) {
     offset,
     userId: user?.id
   });
-  const {like } = await trpc.like.getLikes({
+  const {like,likes } = await trpc.like.getLikes({
     userId: user?.id,
   })
 
@@ -74,6 +74,7 @@ export default async function Home({ searchParams }: HomeProps) {
         hasPostLiked: !!userLike,
         postLikeId: userLike ? userLike.id : null,
         like,
+        likes
       };
     })
   );

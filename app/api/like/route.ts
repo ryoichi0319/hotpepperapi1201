@@ -7,11 +7,11 @@ export async function GET(req: NextRequest, res: NextResponse, ) {
     const format = "json";
 
    
-    const large_service_area = req.nextUrl.searchParams.get("large_service_area") || ""
+    const large_service_area = req.nextUrl.searchParams.get("large_service_area")
    
 
 const response = await fetch(
-`${baseUrl}?key=${apiKey}&large_service_area=${large_service_area}&format=${format}`)
+`${baseUrl}?key=${apiKey}&large_service_area=${large_service_area}&format=${format}&start=0`)
 
 
 const data = await response.json();
