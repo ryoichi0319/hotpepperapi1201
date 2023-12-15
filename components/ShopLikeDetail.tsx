@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils"
     const filterLike = like.filter((like:any) => like.postId === id)
     const router = useRouter()
     const [has, setHasPostLiked] = useState<boolean>(hasPostLiked)
-    const [likePostCount, setLikePostCount] = useState<number>(filterLike.length)
+    const [likePostCount, setLikePostCount] = useState<number>(like.length)
 
 
     

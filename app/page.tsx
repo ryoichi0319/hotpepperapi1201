@@ -59,10 +59,10 @@ export default async function Home({ searchParams }: HomeProps) {
     offset,
     userId: user?.id
   });
-  const {like,likes } = await trpc.like.getLikes({
+  const {like, } = await trpc.like.getLikes({
     userId: user?.id,
   })
-
+console.log(like,"like")
   const newShops = await Promise.all(
     shops.results.shop.map(async (shop: any) => {
       const userLike = userId
@@ -74,7 +74,7 @@ export default async function Home({ searchParams }: HomeProps) {
         hasPostLiked: !!userLike,
         postLikeId: userLike ? userLike.id : null,
         like,
-        likes
+        
       };
     })
   );
