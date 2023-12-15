@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PrefCategory } from "@/data/prefecture";
 
 
-const AuthorSearch = ({ large_service_area }: any) => {
+const AuthorSearch = ({ large_service_area,userId }: any) => {
   const large_service_areaRef = useRef<HTMLSelectElement | null>(large_service_area);
   const router = useRouter();
   const pathname = usePathname();
@@ -46,7 +46,7 @@ const AuthorSearch = ({ large_service_area }: any) => {
     if (large_service_areaRef.current) {
         startTransition(() => {
         router.push(
-          `https://hotpepperapi1201-ryoichi0319.vercel.app${pathname}?${createQueryString({
+          `https://hotpepperapi1201-ryoichi0319.vercel.app${pathname}/${userId}?${createQueryString({
             large_service_area: large_service_areaRef.current?.value,
           })}`
 
