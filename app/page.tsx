@@ -62,7 +62,6 @@ export default async function Home({ searchParams }: HomeProps) {
   const {like, } = await trpc.like.getLikes({
     userId: user?.id,
   })
-console.log(like,"like")
   const newShops = await Promise.all(
     shops.results.shop.map(async (shop: any) => {
       const userLike = userId
