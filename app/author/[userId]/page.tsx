@@ -48,9 +48,9 @@ const AuthorDetailPage = async ({params,searchParams}: AuthorPageProps) => {
     }
 
     return (<div>
-    <AuthorSearch large_service_area={large_service_area}/>
+    <AuthorSearch large_service_area={large_service_area} userId={userId}/>
 
-    <AuthorDetail user={user} likes={likes} large_service_area={large_service_area}/>
+    <AuthorDetail user={user} likes={likes} large_service_area={large_service_area} />
     </div>)
 }
 
