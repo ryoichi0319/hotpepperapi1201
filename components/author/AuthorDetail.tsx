@@ -10,10 +10,9 @@ interface AuthorDetailProps{
 
     }
     likes: any
-    large_service_area: string | undefined
 }
 
-const AuthorDetail = ({user,likes,large_service_area}: AuthorDetailProps) => {
+const AuthorDetail = ({user,likes}: AuthorDetailProps) => {
     return(
         <div>
             <div className=" flex justify-center mb-5 mt-12">
@@ -44,7 +43,7 @@ const AuthorDetail = ({user,likes,large_service_area}: AuthorDetailProps) => {
                 ): (
                     <div className=" grid grid-cols-1 md:grid-cols-3 gap-5 break-words mx-auto max-w-5xl">
                         {user.likes.map((like:any) => (
-                            <AuthorLikeItem key={like.id} like={like} likes={likes} large_service_area={large_service_area}/>
+                            <AuthorLikeItem key={like.id} like={like} likes={likes}/>
                         ))}
 
                     </div>
