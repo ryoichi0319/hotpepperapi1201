@@ -47,7 +47,7 @@ const AuthorDetail = ({user,likes}: AuthorDetailProps) => {
                         ))}
 
                     </div>
-                )}
+                )}  
             </div>
 
         </div>
