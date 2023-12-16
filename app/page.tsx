@@ -24,8 +24,8 @@ async function fetchAllData({ keyword, large_service_area, genre,offset,  }
      }
      
     ) {
-  const res = await fetch(`http://localhost:3000/api/search?keyword=${keyword}
-  &large_service_area=${large_service_area}&genre=${genre}&start=${offset}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/search?keyword=${keyword}
+      &large_service_area=${large_service_area}&genre=${genre}&start=${offset}`, {
     method: "GET",
     headers: {
       "Content-Type" : "application/json",

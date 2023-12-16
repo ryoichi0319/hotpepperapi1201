@@ -46,7 +46,7 @@ const AuthorSearch = ({ large_service_area,userId }: any) => {
     if (large_service_areaRef.current) {
         startTransition(() => {
         router.push(
-          `http://localhost:3000/author/${userId}?${createQueryString({
+          `https://hotpepperapi1201.vercel.app/author/${userId}?${createQueryString({
             large_service_area: large_service_areaRef.current?.value,
           })}`
         );
