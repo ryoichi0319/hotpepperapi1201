@@ -1,5 +1,4 @@
 const GenreCategory = [
-    {genre:"",genre_name:"全てのジャンル"},
     {genre: "G001", genre_name: "居酒屋"},
     {genre: "G002", genre_name: "ダイニングバー・バル"},
     {genre: "G003", genre_name: "創作料理"},
