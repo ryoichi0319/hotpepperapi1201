@@ -6,13 +6,12 @@ import Link from "next/link";
 interface AuthorLikeItemProps {
   like: Likes;
   likes: any;
-  large_service_area: string | undefined
 }
 
-const AuthorLikeItem = ({ like, likes, large_service_area }: AuthorLikeItemProps) => {
+const AuthorLikeItem = ({ like, likes,  }: AuthorLikeItemProps) => {
 
   const filteredShops = likes.results.shop
-    .filter((shop:any) => shop.id === like.postId && shop.large_service_area.code === large_service_area)
+    .filter((shop:any) => shop.id === like.postId )
     .filter(Boolean); // filterでundefined/nullを取り除く
 
 
