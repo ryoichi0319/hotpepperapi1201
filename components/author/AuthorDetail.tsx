@@ -7,14 +7,13 @@ import AuthorLikeItem from "./AuthorLikeItem"
 interface AuthorDetailProps{
     user: User & {
         likes: Likes[]
+
     }
     likes: any
     large_service_area: string | undefined
 }
 
 const AuthorDetail = ({user,likes,large_service_area}: AuthorDetailProps) => {
-    
-   
     return(
         <div>
             <div className=" flex justify-center mb-5 mt-12">
@@ -34,7 +33,8 @@ const AuthorDetail = ({user,likes,large_service_area}: AuthorDetailProps) => {
 
             <div>
                 <div className=" mb-5">
-                    <div className=" font-bold mb-1">TOTAL　 ❤️　{user.likes.length}</div>
+                    <div className=" font-bold mb-4 mt-4 text-center">TOTAL　 ❤️　{user.likes.length}</div>
+                    <p className=" text-center text-slate-500">最新のいいねから順に表示されています</p>
                 </div>
 
                 {user.likes.length === 0 ? (
@@ -42,9 +42,9 @@ const AuthorDetail = ({user,likes,large_service_area}: AuthorDetailProps) => {
                         いいねはありません
                     </div>
                 ): (
-                    <div className=" grid grid-cols-1 sm:grid-cols-3 gap-5 break-words">
-                        {user.likes.map((like) => (
-                            <AuthorLikeItem key={like.id} like={like} likes={likes}/>
+                    <div className=" grid grid-cols-1 md:grid-cols-3 gap-5 break-words mx-auto max-w-5xl">
+                        {user.likes.map((like:any) => (
+                            <AuthorLikeItem key={like.id} like={like} likes={likes} large_service_area={large_service_area}/>
                         ))}
 
                     </div>

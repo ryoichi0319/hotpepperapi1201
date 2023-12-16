@@ -49,14 +49,11 @@ const AuthorSearch = ({ large_service_area,userId }: any) => {
           `https://hotpepperapi1201.vercel.app/author/${userId}?${createQueryString({
             large_service_area: large_service_areaRef.current?.value,
           })}`
-
         );
-
-
       });}
-
-    
   };
+  // `https://hotpepperapi1201.vercel.app/author/${userId}?${createQueryString({
+
 
   return (
     <div className=" bg-gray-800 pr-5 text-center  w-full z-10">

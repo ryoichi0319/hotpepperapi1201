@@ -14,7 +14,7 @@ async function fetchAllData({  large_service_area  }
        large_service_area: string | undefined
        }  ) {
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/like?large_service_area=${large_service_area}`
+    const res = await fetch(`http://localhost:3000/api/like?large_service_area=${large_service_area}`
     , {
         cache: "no-store", //SSR
 
@@ -28,6 +28,8 @@ async function fetchAllData({  large_service_area  }
     return data;
     
   }
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/like?large_service_area=${large_service_area}`
+
 
 
 
@@ -40,7 +42,7 @@ const AuthorDetailPage = async ({params,searchParams}: AuthorPageProps) => {
 
 
     const user = await trpc.user.getUserByIdLike({
-        userId
+        userId,
     })
 
     if(!user){

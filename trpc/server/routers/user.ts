@@ -73,11 +73,12 @@ export const userRouter = router({
         .input(
             z.object({
                 userId: z.string().optional(),
+                
             })
         )
         .query(async ({ input}) =>{
             try{
-                const  { userId } = input
+                const  { userId,  } = input
                 
                 if (!userId){
                     return null
@@ -88,8 +89,10 @@ export const userRouter = router({
                     where: {id : userId},
                     include: {
                         likes: {
+                            
                             orderBy:{
                                 updatedAt: "desc",
+                                
                             }
                         }
                     }
