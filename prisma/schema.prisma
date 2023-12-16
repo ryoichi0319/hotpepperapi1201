@@ -78,6 +78,7 @@ model Likes {
   postId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  large_service_area String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

@@ -12,11 +12,11 @@ export async function GET(req: NextRequest, res: NextResponse, ) {
     //キーワード
     const keyword = req.nextUrl.searchParams.get("keyword") || null
     //ジャンル
-    const genre = req.nextUrl.searchParams.get("genre") || null
+    const genre = `&genre=${req.nextUrl.searchParams.get("genre")}` || null
 
 const response = await fetch(
 `${baseUrl}?key=${apiKey}&large_service_area=${large_service_area}
-&genre=${genre}&format=${format}&keyword=${keyword}&count=10&start=${offset}`
+${genre}&format=${format}&keyword=${keyword}&count=10&start=${offset}`
 );
 
 
