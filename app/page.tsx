@@ -13,8 +13,9 @@ interface HomeProps {
   };
 }
 
-async function fetchAllData({ keyword, large_service_area, genre,offset,  }
+async function fetchAllData({ keyword, large_area,large_service_area, genre,offset,  }
   : {keyword: string | undefined
+     large_area: string | undefined
      large_service_area: string | undefined
      genre: string | undefined
      limit: number
@@ -24,8 +25,8 @@ async function fetchAllData({ keyword, large_service_area, genre,offset,  }
      }
      
     ) {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/search?keyword=${keyword}
-      &large_service_area=${large_service_area}&genre=${genre}&start=${offset}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/search?keyword=${keyword}&large_service_area=${large_service_area}
+      &large_area=${large_area}&genre=${genre}&start=${offset}`, {
     method: "GET",
     headers: {
       "Content-Type" : "application/json",
@@ -40,7 +41,7 @@ async function fetchAllData({ keyword, large_service_area, genre,offset,  }
 
 
 export default async function Home({ searchParams }: HomeProps) {
-  const { keyword, large_service_area, genre, page, perPage,  } = searchParams;
+  const { keyword, large_area,large_service_area, genre, page, perPage,  } = searchParams;
   const user = await getAuthSession()
 
   const limit = typeof perPage === "string" ? parseInt(perPage) : postPerPage
@@ -56,6 +57,7 @@ export default async function Home({ searchParams }: HomeProps) {
   const shops = await fetchAllData({
     keyword,
     large_service_area,
+    large_area,
     genre,
     limit,
     offset,
@@ -94,8 +96,9 @@ export default async function Home({ searchParams }: HomeProps) {
 
      <Search
       keyword={keyword} 
-      large_service_area={large_service_area}
+      large_area={large_area}
        genre={genre}
+       large_service_area={large_service_area}
         offset={offset}
         />
         <div>

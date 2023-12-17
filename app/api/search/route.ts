@@ -9,13 +9,14 @@ export async function GET(req: NextRequest, res: NextResponse, ) {
     const offset = req.nextUrl.searchParams.get("start");
     //大分類
     const large_service_area = req.nextUrl.searchParams.get("large_service_area") || "SS40"
+    const large_area = req.nextUrl.searchParams.get("large_area") || "Z041"
     //キーワード
-    const keyword = req.nextUrl.searchParams.get("keyword") || null
+    const keyword = req.nextUrl.searchParams.get("keyword") || ""
     //ジャンル
     const genre = `&genre=${req.nextUrl.searchParams.get("genre")}` || null
 
 const response = await fetch(
-`${baseUrl}?key=${apiKey}&large_service_area=${large_service_area}
+`${baseUrl}?key=${apiKey}&large_area=${large_area}&large_service_area=${large_service_area}
 ${genre}&format=${format}&keyword=${keyword}&count=10&start=${offset}`
 );
 
@@ -30,6 +31,7 @@ const total = results.results_available
 return NextResponse.json({
     results,
     keyword,
+    large_area,
     large_service_area,
     genre,
     total,

@@ -46,13 +46,15 @@ const AuthorSearch = ({ large_service_area,userId }: any) => {
     if (large_service_areaRef.current) {
         startTransition(() => {
         router.push(
-          `https://hotpepperapi1201.vercel.app/author/${userId}?${createQueryString({
-            large_service_area: large_service_areaRef.current?.value,
+  `https://hotpepperapi1201.vercel.app/author/${userId}?${createQueryString({
+    large_service_area: large_service_areaRef.current?.value,
           })}`
         );
       });}
   };
   // `https://hotpepperapi1201.vercel.app/author/${userId}?${createQueryString({
+    // `http://localhost:3001/author/${userId}?${createQueryString({
+
 
 
   return (
@@ -63,7 +65,7 @@ const AuthorSearch = ({ large_service_area,userId }: any) => {
           <label className="text-white mr-11 lg:mr-0">地域</label>
           <select className="p-2 border rounded w-64" ref={large_service_areaRef}>
             {PrefCategory.map((category, index) => (
-              <option key={index} value={category.large_service_area}>
+              <option key={index} value={category.large_service_area_code}>
                 {category.category_name}
               </option>
             ))}
