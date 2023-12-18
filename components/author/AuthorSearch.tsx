@@ -23,7 +23,6 @@ const AuthorSearch = ({ large_service_area,userId }: any) => {
     }
   }, [large_service_area]);
 
-
   // Create query string
   const createQueryString = useCallback(
     (params: Record<string, string | undefined>) => {
@@ -46,14 +45,14 @@ const AuthorSearch = ({ large_service_area,userId }: any) => {
     if (large_service_areaRef.current) {
         startTransition(() => {
         router.push(
-  `https://hotpepperapi1201.vercel.app/author/${userId}?${createQueryString({
+  `${process.env.NEXT_PUBLIC_URL}${pathname}?${createQueryString({
     large_service_area: large_service_areaRef.current?.value,
           })}`
         );
       });}
   };
   // `https://hotpepperapi1201.vercel.app/author/${userId}?${createQueryString({
-    // `http://localhost:3001/author/${userId}?${createQueryString({
+    // `http://localhost:3000/author/${userId}?${createQueryString({
 
 
 
