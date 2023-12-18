@@ -25,10 +25,10 @@ const Navigation = ({user}: NavigationProps) =>{
        ) : (
         <div className="flex items-center space-x-4  ">
 
-            <Button asChild variant="ghost" className="font-bold bg-cyan-800 text-white">
+            <Button asChild  className="font-bold bg-cyan-600 hover:bg-cyan-500 text-white">
                 <Link href="/login">ログイン</Link>
             </Button>
-            <Button asChild variant="ghost" className="font-bold bg-gray-600 text-white">
+            <Button asChild  className="font-bold bg-gray-600 hover:bg-gray-500 text-white">
                 <Link href="/signup">新規登録</Link>
             </Button>
 

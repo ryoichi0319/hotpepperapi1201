@@ -32,6 +32,7 @@ async function fetchAllData({ keyword, large_area,large_service_area, genre,offs
       "Content-Type" : "application/json",
   },
   });
+
   const data = await res.json();
   return data;
   
@@ -46,13 +47,13 @@ export default async function Home({ searchParams }: HomeProps) {
 
   const limit = typeof perPage === "string" ? parseInt(perPage) : postPerPage
 
-  const offset = typeof page === "string" ? (parseInt(page) - 1) * limit : 0
+  const currentPage = typeof page === "string" ? (parseInt(page) - 1) * limit : 0
+  //start位置
+  const offset = currentPage + 1
+
   const userId = user?.id
-  
  
-
   // start プロパティの型を number | undefined に設定
-
 
   const shops = await fetchAllData({
     keyword,
@@ -102,7 +103,7 @@ export default async function Home({ searchParams }: HomeProps) {
         offset={offset}
         />
         <div>
-       
+   
         </div>
      <div className=' flex justify-center  space-x-5 mt-5  '>
               <p className=' '>検索結果</p>

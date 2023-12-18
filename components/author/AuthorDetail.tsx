@@ -9,10 +9,15 @@ interface AuthorDetailProps{
         likes: Likes[]
 
     }
-    likes: any
+    fetchData: any
+    large_service_area: string | undefined
 }
 
-const AuthorDetail = ({user,likes}: AuthorDetailProps) => {
+const AuthorDetail = ({user,fetchData,}: AuthorDetailProps) => {
+    const userLikes = user.likes.map((like) => like.postId);
+
+    const filteredShops = fetchData.results.shop.filter((shop:any) => userLikes.includes(shop.id));
+    
     return(
         <div>
             <div className=" flex justify-center mb-5 mt-12">
@@ -42,8 +47,10 @@ const AuthorDetail = ({user,likes}: AuthorDetailProps) => {
                     </div>
                 ): (
                     <div className=" grid grid-cols-1 md:grid-cols-3 gap-5 break-words mx-auto max-w-5xl">
-                        {user.likes.map((like:any) => (
-                            <AuthorLikeItem key={like.id} like={like} likes={likes}/>
+
+                        {
+                        filteredShops.map((like:any) => (
+                            <AuthorLikeItem key={like.id} like={like} />
                         ))}
 
                     </div>

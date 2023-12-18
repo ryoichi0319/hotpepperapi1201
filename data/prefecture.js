@@ -1,5 +1,6 @@
 //都道府県カテゴリ
 const PrefCategory = [
+    {category_name:"地域を選択してください"},
     {large_service_area_code: "SS40", category_name: "北海道"},
     {large_service_area_code: "SS50", category_name: "東北"},
     {large_service_area_code: "SS30", category_name: "東海"},
