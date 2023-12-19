@@ -66,7 +66,7 @@ const AuthorDetailPage = async ({params,searchParams}: AuthorPageProps) => {
   const pageCount = Math.ceil(total / limit)
     
 
-    return (<div>
+    return (<div className=" mb-5">
     <AuthorSearch large_service_area={large_service_area} userId={userId} />
    
       {total === 0 ? (
