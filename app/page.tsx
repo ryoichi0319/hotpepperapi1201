@@ -98,9 +98,9 @@ export default async function Home({ searchParams }: HomeProps) {
      <Search
       keyword={keyword} 
       large_area={large_area}
-       genre={genre}
-       large_service_area={large_service_area}
-        offset={offset}
+      genre={genre}
+      large_service_area={large_service_area}
+      offset={offset}
         />
        <div className="text-center bg-gray-800 text-white p-8">
     <h1 className="font-bold text-3xl">プライベートな空間を提供するお店を検索！</h1>
@@ -123,7 +123,7 @@ export default async function Home({ searchParams }: HomeProps) {
       )}
        {shops.length !== 0 && (
         <PaginationButton
-         pageCount={pageCount}
+          pageCount={pageCount}
           displayPerPage={postPerPage}
            />
       )}
