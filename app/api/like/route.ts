@@ -13,7 +13,7 @@ export async function GET(req: NextRequest, res: NextResponse, ) {
    
 
 const response = await fetch(
-`${baseUrl}?key=${apiKey}&large_service_area=${large_service_area}&format=${format}&count=100&start=${offset}&band=1`)
+`${baseUrl}?key=${apiKey}&large_service_area=${large_service_area}&format=${format}&count=100&start=${offset}&private_room=1`)
 
 
 const data = await response.json();

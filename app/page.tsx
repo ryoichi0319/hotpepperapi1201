@@ -102,9 +102,9 @@ export default async function Home({ searchParams }: HomeProps) {
        large_service_area={large_service_area}
         offset={offset}
         />
-        <div>
-   
-        </div>
+       <div className="text-center bg-gray-800 text-white p-8">
+    <h1 className="font-bold text-3xl">プライベートな空間を提供するお店を検索！</h1>
+</div>
      <div className=' flex justify-center  space-x-5 mt-5  '>
               <p className=' '>検索結果</p>
               <p className=' text-red-600 font-bold '>{total}</p>
@@ -131,8 +131,4 @@ export default async function Home({ searchParams }: HomeProps) {
     </div>
   );
 }
-
-
-
-
 

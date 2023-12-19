@@ -17,7 +17,7 @@ export async function GET(req: NextRequest, res: NextResponse, ) {
 
 const response = await fetch(
 `${baseUrl}?key=${apiKey}&large_area=${large_area}&large_service_area=${large_service_area}
-${genre}&format=${format}&keyword=${keyword}&count=10&start=${offset}&band=1`
+${genre}&format=${format}&keyword=${keyword}&count=10&start=${offset}&private_room=1`
 );
 
 const data = await response.json();
