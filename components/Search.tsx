@@ -99,14 +99,14 @@ const Search = ({ keyword, large_area,large_service_area, genre, }: any) => {
           <input
             type="text"
             ref={inputRef}
-            className="p-2 border rounded w-48"
+            className="p-2 border rounded w-40"
             placeholder="キーワード検索"
           />
         </div>
         <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0  items-center gap-4">
         <label className="text-white mr-11 lg:mr-0">地域</label>
         <select
-          className="p-2 border rounded w-48"
+          className="p-2 border rounded w-40"
           ref={large_service_areaRef}
           onChange={handleRegionChange}
         >
@@ -121,7 +121,7 @@ const Search = ({ keyword, large_area,large_service_area, genre, }: any) => {
       {/* 都道府県の選択 */}
       <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0  items-center gap-4">
         <label className="text-white mr-4 lg:mr-0">都道府県</label>
-        <select className="p-2 border rounded w-48" ref={large_areaRef}>
+        <select className="p-2 border rounded w-40" ref={large_areaRef}>
           {filteredPrefectures.map((category, index) => (
             <option key={index} value={category.large_area_code}>
               {category.large_area_name}
@@ -131,7 +131,7 @@ const Search = ({ keyword, large_area,large_service_area, genre, }: any) => {
       </div>
         <div className="md:flex flex-col md:flex-row space-x-7 md:space-x-0 items-center gap-4 ">
           <label className="text-white mr-4  lg:mr-0 ">ジャンル</label>
-          <select className="p-2 border rounded w-48" ref={genreRef}>
+          <select className="p-2 border rounded w-40" ref={genreRef}>
             {GenreCategory.map((genre, index) => (
               <option key={index} value={genre.genre}>
                 {genre.genre_name}

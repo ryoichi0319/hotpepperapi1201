@@ -51,8 +51,7 @@ const AuthorSearch = ({ large_service_area,userId }: any) => {
         );
       });}
   };
-  // `https://hotpepperapi1201.vercel.app/author/${userId}?${createQueryString({
-    // `http://localhost:3000/author/${userId}?${createQueryString({
+
 
 
 
