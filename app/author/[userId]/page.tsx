@@ -58,7 +58,7 @@ const AuthorDetailPage = async ({params,searchParams}: AuthorPageProps) => {
  
 
     if(!user){
-        return <div className=" text-center">ユーザーは存在しません</div>
+        return <div className=" text-center">ユーザーは存在しません。</div>
     }
 
 
