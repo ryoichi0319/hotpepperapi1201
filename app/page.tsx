@@ -6,6 +6,7 @@ import {postPerPage} from "@/data/perPage"
 import Image from 'next/image';
 import { getAuthSession } from '@/lib/nextauth';
 import { trpc } from '@/trpc/client';
+import edamame from '../public/edamame.png';
 
 interface HomeProps {
   searchParams: {
@@ -89,7 +90,6 @@ export default async function Home({ searchParams }: HomeProps) {
   const total = shops.total
   const pageCount = Math.ceil(total / limit)
 
-
   
   return (
     <div className="	">
@@ -112,7 +112,10 @@ export default async function Home({ searchParams }: HomeProps) {
               
               <p>{page} / {pageCount}</p>
               </div>
-      {total === 0 ? (
+              {(total === 0 && (page === undefined || parseInt(page) !== 1)) ? (
+  <p className=' mt-12 text-xl text-red-500 text-center font-semibold'>地域を選択してください。</p>
+) : null}
+      {total === 0 && page && parseInt(page) === 1 ? (
         <p className=' mt-3 text-center font-semibold'>検索結果がありません。条件を変えて検索して下さい。</p>
       ) : (
         <div className="grid grid-cols-1 sm:gap-3 md:grid-cols-2 lg:grid-cols-3     ">
@@ -121,11 +124,22 @@ export default async function Home({ searchParams }: HomeProps) {
 
         </div>
       )}
-       {shops.length !== 0 && (
+       {total !== 0   ? (
         <PaginationButton
           pageCount={pageCount}
           displayPerPage={postPerPage}
-           />
+           /> 
+      ):(
+        <div className=' w-[70%] ml-[50%]'>
+        <Image 
+          src={edamame}
+          alt=''
+          
+          className=' opacity-30'
+          
+        />
+        </div>
+
       )}
      
     </div>
